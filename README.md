@@ -37,3 +37,43 @@
   - `psql`
   - `\password postgres`
 - enter this password in pgAdmin while registering a server. Click save
+
+
+### Install Sequlize 
+- Follow the steps below to install sequelize
+- By default Seqelize will create config.json file, change the extension to config.js
+- If using DB cluster, we need to make SSL connection to the cluster. Add the follow code in config.js file
+  ```
+  "development": {
+    "username": process.env.USER_NAME_D,
+    "password": process.env.DB_PASSWORD_D,
+    "database": process.env.DB_NAME_D,
+    "host": process.env.DB_HOST_D,
+    "dialect": process.env.DB_DIALECT_D,
+    logging: false,
+    port : process.env.DB_PORT_D,
+    dialectOptions: {
+      ssl: {
+        require: true, // This will help you. But you will see nwe error
+        rejectUnauthorized: false // This line will fix new error
+      }
+    },
+    pool: {
+      max: 10,
+      min: 0,
+      acquire: 30000,
+      idle: 10000
+    }
+  }
+  ```
+  
+
+### Common Model Queries 
+- [LINK](https://sequelize.org/docs/v6/core-concepts/model-querying-basics/)
+- By defaut index.js file in Models will be created, which can be used to work with all the models we define.
+- While using model querying 
+
+
+
+
+
